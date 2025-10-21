@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Developer & AI Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Arial', 'sans-serif';
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .header-text h2 {
+            font-size: 1.3em;
+            font-weight: 400;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .header-text p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Navigation */
+        nav {
+            background: #34495e;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .section-intro {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.05em;
+        }
+
+        /* Why Choose Me */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .reason-item {
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .reason-item h3 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .reason-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .skill-category {
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category ul li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .skill-category ul li:last-child {
+            border-bottom: none;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .project-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #ecf0f1;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-body {
+            padding: 25px;
+        }
+
+        .project-body h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .project-body p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .view-more {
+            color: #3498db;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Modal Styling */
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px 20px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .project-detail {
+            padding: 40px;
+        }
+
+        .project-detail h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .project-detail-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .project-detail-images img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .project-detail-content h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .project-detail-content ul {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .project-detail-content ul li {
+            color: #555;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        .project-detail-content ul li:before {
+            content: '✓';
+            color: #3498db;
+            font-weight: bold;
+            margin-left: -15px;
+            margin-right: 10px;
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            background: #34495e;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .contact-link:hover {
+            background: #2c3e50;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 1.8em;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .projects-grid,
+            .skills-grid,
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+        }</style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img src="https://via.placeholder.com/150" alt="Your Photo" class="profile-image">
+            <div class="header-text">
+                <h1>AHMAD JAVED</h1>
+                <p>Full Stack Developer & AI Specialist</p>
+                <br></br>
+                <p>Building robust web applications and training intelligent AI models<br>to deliver innovative solutions for modern challenges.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#why-me">Why Choose Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p class="section-intro">I am a dedicated Full Stack Developer and AI Specialist with expertise in building end-to-end web solutions and developing custom machine learning models. My work focuses on creating scalable, efficient applications that leverage modern technologies and artificial intelligence to solve real business problems.</p>
+            <p class="section-intro">With experience across the entire development stack—from responsive frontend interfaces to robust backend systems and cloud deployment—I deliver comprehensive solutions. Additionally, my AI capabilities allow me to integrate intelligent features, train custom models, and implement data-driven decision-making systems.</p>
+        </section>
+
+        <!-- Why Choose Me Section -->
+        <section id="why-me">
+            <h2>Why Choose Me</h2>
+            <p class="section-intro">Here's what sets me apart and why I can be the right choice for your project:</p>
+            
+            <div class="reasons-grid">
+                <div class="reason-item">
+                    <h3>Full Stack Expertise</h3>
+                    <p>I handle complete web development from frontend to backend, databases, APIs, and deployment. You get a single point of contact who understands every layer of your application.</p>
+                </div>
+
+                <div class="reason-item">
+                    <h3>AI & Machine Learning</h3>
+                    <p>Beyond standard development, I build and train custom AI models tailored to specific needs—whether for predictive analytics, computer vision, natural language processing, or intelligent automation.</p>
+                </div>
+
+                <div class="reason-item">
+                    <h3>Clean, Maintainable Code</h3>
+                    <p>I write well-structured, documented code following industry best practices. This ensures your application is easy to maintain, scale, and update as your business grows.</p>
+                </div>
+
+                <div class="reason-item">
+                    <h3>Problem-Solving Approach</h3>
+                    <p>I focus on understanding your business requirements and challenges, then architect solutions that address them effectively. Technology serves your goals, not the other way around.</p>
+                </div>
+
+                <div class="reason-item">
+                    <h3>Modern Technology Stack</h3>
+                    <p>I work with current, industry-standard technologies and frameworks, ensuring your application is built on reliable, well-supported tools with strong community backing.</p>
+                </div>
+
+                <div class="reason-item">
+                    <h3>Reliable Communication</h3>
+                    <p>I maintain clear, consistent communication throughout the project lifecycle. You'll always know the status, progress, and any challenges we need to address together.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <p class="section-intro">My technical expertise spans modern web development and artificial intelligence:</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>Responsive Design</li>
+                        <li>Tailwind CSS & Bootstrap</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Backend Development</h3>
+                    <ul>
+                        <li>Node.js & Express</li>
+                        <li>Python</li>
+                        <li>PHP</li>
+                        <li>Authentication & Security</li>
+                        <li>API Development</li>
+                        <li>Server Management</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Databases & Tools</h3>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>Firebase</li>
+                        <li>Database Design</li>
+                        <li>Git & GitHub</li>
+                        <li>API Testing</li>
+                        <li>Deployment</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>AI & Machine Learning</h3>
+                    <ul>
+                        <li>TensorFlow & PyTorch</li>
+                        <li>Computer Vision (OpenCV)</li>
+                        <li>Natural Language Processing</li>
+                        <li>Model Training & Deployment</li>
+                        <li>scikit-learn & Pandas</li>
+                        <li>Deep Learning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+       <section id="projects">
+            <h2>Projects Portfolio</h2>
+            <p class="section-intro">A selection of projects demonstrating my full-stack development and AI capabilities:</p>
+            
+            <div class="projects-grid">
+                <div class="project-card" onclick="viewProject(0)">
+                    <div class="project-image">
+                        <img src="img\AI BASED\Screenshot 2025-05-06 203228.jpg" alt=" AI-Based Vehicle Theft Detection & Recovery System">
+                    </div>
+                    <div class="project-body">
+                        <h3>AI-Based Vehicle Theft Detection & Recovery System</h3>
+                        <p>An AI-powered system that detects and helps recover stolen vehicles using real-time image recognition and license plate analysis.</p>
+                        <span class="view-more">Click to view details →</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="viewProject(1)">
+                    <div class="project-image">
+                        <img src="img2\Screenshot 2025-10-13 173553.png" alt="EduKid Planet – Learn, Play, and Grow">
+                    </div>
+                    <div class="project-body">
+                        <h3>EduKid Planet – Learn, Play, and Grow</h3>
+                        <p>A playful, interactive website that makes learning about animals fun for children through sounds, poems, games, and animations.</p>
+                        <span class="view-more">Click to view details →</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="viewProject(2)">
+                    <div class="project-image">
+                        <img src="IMG 3\Screenshot 2025-10-15 185909.png" alt="Homeland Enterprises - Comprehensive Poultry Medicine Management System">
+                    </div>
+                    <div class="project-body">
+                        <h3>Homeland Enterprises - comprehensive Poultry Medicine Management System</h3>
+                        <p>Homeland Enterprises is a web-based system for managing poultry medicine inventory, sales, and invoices with real-time tracking and analytics.</p>
+                        <span class="view-more">Click to view details →</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="viewProject(3)">
+                    <div class="project-image">
+                        <img src="img 4\Screenshot 2025-10-21 190823.png" alt="PayLink – The Future of Cashless Transactions">
+                    </div>
+                    <div class="project-body">
+                        <h3>PayLink – The Future of Cashless Transactions</h3>
+                        <p>A secure and intelligent digital wallet designed to simplify money management through instant transfers, payments, and tracking — all in one platform.</p>
+                        <span class="view-more">Click to view details →</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="viewProject(4)">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Social Media Platform">
+                    </div>
+                    <div class="project-body">
+                        <h3>Social Media Platform</h3>
+                        <p>Full-featured social networking application with real-time messaging, content feeds, and AI-powered recommendations.</p>
+                        <span class="view-more">Click to view details →</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="viewProject(5)">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Content Management System">
+                    </div>
+                    <div class="project-body">
+                        <h3>Content Management System</h3>
+                        <p>Headless CMS with visual builder, role-based access control, and AI-assisted content generation features.</p>
+                        <span class="view-more">Click to view details →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Detail Modal -->
+        <div id="projectModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeProject()">&times;</span>
+                <div class="project-detail">
+                    <h2 id="projectTitle"></h2>
+                    <div class="project-detail-images">
+                        <img id="projectImage1" src="" alt="Project Image">
+                        <img id="projectImage2" src="" alt="Project Image">
+                        <img id="projectImage3" src="" alt="Project Image">
+                    </div>
+                    <div class="project-detail-content">
+                        <h3>Project Overview</h3>
+                        <p id="projectDescription"></p>
+                        <h3>Key Features</h3>
+                        <ul id="projectFeatures"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const projects = [
+                {
+                    title: "AI-Based Vehicle Theft Detection & Recovery System",
+                    images: [
+
+                        "img/AI BASED/Screenshot 2025-07-18 080521.jpg",
+                        "img/AI BASED/Screenshot 2025-10-13 171419.png",
+                        "img/AI BASED/Screenshot 2025-05-06 203504.jpg"
+                    ],
+                    description: "An AI-powered system that detects and helps recover stolen vehicles using real-time image recognition and license plate analysis.",
+                    features: [
+                        "Real-time vehicle monitoring using CCTV feeds.",
+                        "License plate recognition with high accuracy.",
+                        "Automated alerts to authorities upon theft detection.",
+                        "User-friendly dashboard for tracking and management."
+                    ]
+                },
+                {
+                    title: "EduKid Planet – Learn, Play, and Grow",
+                    images: [
+                        "img2/Screenshot 2025-10-13 173553.png",
+                        "img2/Screenshot 2025-10-13 173707.png",
+                        "img2/Screenshot 2025-10-13 173819.png"
+                    ],
+                    description: "An interactive educational website designed for children to learn about animals through engaging visuals, real sounds, fun poems, and mini games in a safe and playful environment.",
+                    features: [
+                        "Interactive animal sounds for audio-based learning.",
+                        "Fun poems and rhymes to make learning memorable.",
+                        "Dance party mode with animated animals and music.",
+                        "Mini learning games for testing and improving memory.",
+                        "Safe, child-friendly design with no ads or distractions.",
+                        "Colorful, child-friendly interface with simple navigation."
+                    ]
+                },
+                {
+                    title: "Data Analytics Dashboard",
+                    images: [
+                        "IMG 3/Screenshot 2025-10-15 190021.png",
+                        "IMG 3/Screenshot 2025-10-15 190120.png",
+                        "IMG 3/Screenshot 2025-10-15 190149.png"
+                    ],
+                    description: "Real-time analytics platform with interactive visualizations and machine learning-powered predictive insights.",
+                    features: [
+                        "Dynamic data visualizations with charts and graphs.",
+                        "Real-time data updates and monitoring.",
+                        "Predictive analytics using machine learning models.",
+                        "Custom report generation and export options."
+                    ]
+                },
+                {
+                    title: "Image Recognition System",
+                    images: [
+                        "img 4/Screenshot 2025-10-21 190918.png",
+                        "img 4/Screenshot 2025-10-21 190939.png",
+                        "img 4/Screenshot 2025-10-21 191008.png"
+                    ],
+                    description: "PayLink is a secure and intelligent digital wallet that enables users to send, receive, and manage money seamlessly. It offers instant payments, bill management, and transaction tracking through a modern and user-friendly interface.",
+                    features: [
+                        "Secure and instant digital transactions for sending and receiving money.",
+                        "Integrated bill payments and mobile top-up services.",
+                        "Real-time balance monitoring and transaction history tracking.",
+                        "Intuitive user interface ensuring smooth navigation and performance."
+                    ]
+                },
+                {
+                    title: "Social Media Platform",
+                    images: [   
+                        "https://via.placeholder.com/600x400",
+                        "https://via.placeholder.com/600x400",
+                        "https://via.placeholder.com/600x400"
+                    ],      
+                    description: "Full-featured social networking application with real-time messaging, content feeds, and AI-powered recommendations.",
+                    features: [
+                        "User profiles with customizable settings.",
+                        "Real-time chat and messaging functionality.",
+                        "AI-driven content recommendations.",
+                        "Robust privacy and security features."
+                    ]
+                },
+                {
+                    title: "Content Management System",
+                    images: [
+                        "https://via.placeholder.com/600x400",
+                        "https://via.placeholder.com/600x400",
+                        "https://via.placeholder.com/600x400"
+                    ],
+                    description: "Headless CMS with visual builder, role-based access control, and AI-assisted content generation features.",
+                    features: [
+                        "Visual content builder with drag-and-drop functionality.",
+                        "Role-based access control for team collaboration.",
+                        "AI-assisted content creation and optimization.",
+                        "API-first architecture for easy integration."
+                    ]
+                }
+            ];
+            function viewProject(index) {
+                const project = projects[index];
+                document.getElementById('projectTitle').innerText = project.title;
+                document.getElementById('projectImage1').src = project.images[0];
+                document.getElementById('projectImage2').src = project.images[1];
+                document.getElementById('projectImage3').src = project.images[2];
+                document.getElementById('projectDescription').innerText = project.description;
+
+                const featuresList = document.getElementById('projectFeatures');
+                featuresList.innerHTML = '';
+                project.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerText = feature;
+                    featuresList.appendChild(li);
+                });
+
+                document.getElementById('projectModal').style.display = 'block';
+            }
+            function closeProject() {
+                document.getElementById('projectModal').style.display = 'none';
+            }
+             function openImagePreview(imageSrc) {
+            document.getElementById('previewImage').src = imageSrc;
+            document.getElementById('imagePreviewModal').style.display = 'flex';
+        }
+
+        function closeImagePreview() {
+            document.getElementById('imagePreviewModal').style.display = 'none';
+        }
+           window.onclick = function(event) {
+            const projectModal = document.getElementById('projectModal');
+            const imageModal = document.getElementById('imagePreviewModal');
+            
+            if (event.target == projectModal) {
+                projectModal.style.display = 'none';
+            }
+            if (event.target == imageModal) {
+                imageModal.style.display = 'none';
+            }
+        }
+
+
+        </script>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Interested in working together? Feel free to reach out through any of these channels:</p>
+                <div class="contact-links">
+                    <a href="mailto:ahmad.javed.35432@gmail.com" class="contact-link">Email</a>
+                    <a href="https://www.linkedin.com/in/ahmad-javed-761b4b367" class="contact-link">LinkedIn</a>
+                    <a href="https://github.com/AhmedJaved1" class="contact-link">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Ahmad javed. Full Stack Developer & AI Specialist | Islamabad, Pakistan</p>
+    </footer>
+</body>
+</html>
